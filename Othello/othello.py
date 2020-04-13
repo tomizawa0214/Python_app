@@ -40,8 +40,8 @@ class Othello(tk.Tk):
         self.board = tk.Canvas(self, bg="lime green", width=350, height=350)
         self.board.place(x=0, y=0)
         # オセロ盤を作成
-        for i, y in zip(self.numstr, range(15, 336, 40)):
-            for j, x in zip(self.alpstr, range(15, 336, 40)):
+        for i, y in zip(self.numstr, range(15, 326, 40)):
+            for j, x in zip(self.alpstr, range(15, 326, 40)):
                 pos = x, y, x+40, y+40
                 tag = i + j
                 self.tag2pos[tag] = pos
@@ -52,7 +52,7 @@ class Othello(tk.Tk):
         for z, turn in [(44, 1), (45, -1), (54, -1), (55, 1)]:
             tag = self.z2tag[z]
             self.sentinel[z] = turn
-            self.board.create_oval(*self.tag2pos[tag], fill=self.color[turn], tags=tag)
+            self.board.create_oval(*self.tag2pos[tag], fill=self.color[turn], tags=tag, width=0)
         self.sent2board()
         #self.get_board_info()
         self.get_candidates()
@@ -134,10 +134,10 @@ class Othello(tk.Tk):
         # 反転処理
         for z in self.candidates[tag]:
             ctag = self.z2tag[z]
-            self.board.create_oval(*self.tag2pos[ctag], fill=self.color[self.playerTurn])
+            self.board.create_oval(*self.tag2pos[ctag], fill=self.color[self.playerTurn], width=0)
             self.sentinel[z] = self.playerTurn
         # 新しく石を置く
-        self.board.create_oval(*self.tag2pos[tag], fill=self.color[self.playerTurn])
+        self.board.create_oval(*self.tag2pos[tag], fill=self.color[self.playerTurn], width=0)
 
         ### 2. 盤情報の更新 ###
         self.sentinel[self.z_coordinate(tag)] = self.playerTurn
