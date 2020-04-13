@@ -29,13 +29,13 @@ class Thread(threading.Thread):
         return self.thlock
 
     def is_cpu(self):
-        return self.parent.is_cpu
+        return self.parent.cpu
 
     def is_end(self):
         return self.parent.is_end
 
     def is_gorilla(self):
-        return self.parent.is_gorilla
+        return self.parent.gorilla
 
     def random_choice(self):
         if self.is_end():
